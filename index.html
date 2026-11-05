@@ -1,6 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Golden Cage</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="A dictator gets super-intelligent AI. Not to control you. Only to *make you happy*.">
+<meta name="description" content="A dictator gets super-intelligent AI. Not to control you. Only to make you happy.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -31,12 +35,14 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--body);
-  font-size: 1.125rem;
+  margin: 0;
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.3rem);
   line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.wrap { max-width: 36rem; margin: 0 auto; padding-block: 0 5rem; }
+.wrap { max-width: 44rem; margin: 0 auto; padding-block: 0 5rem; }
 
 header { position: relative; padding-block: 5rem 3rem; }
 header::before {
@@ -109,11 +115,11 @@ footer {
   font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em;
 }
 @media (max-width: 480px) {
-  body { font-size: 1.05rem; }
   header { padding-block: 3.5rem 2rem; }
 }
 </style>
-
+</head>
+<body>
 <div class="wrap">
   <header>
     <p class="kicker">An essay by Elamurugu Kandasamy &middot; November 2026</p>
@@ -231,3 +237,5 @@ footer {
   </article>
   <footer>Elamurugu Kandasamy &middot; November 2026</footer>
 </div>
+</body>
+</html>

@@ -89,8 +89,12 @@ def convert(md):
     return title, dek, note_html, "\n".join(out)
 
 
-TEMPLATE = """<title>The Golden Cage</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+TEMPLATE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Golden Cage</title>
 <meta name="description" content="{dek}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,12 +126,14 @@ body {{
   background: var(--paper);
   color: var(--ink);
   font-family: var(--body);
-  font-size: 1.125rem;
+  margin: 0;
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.3rem);
   line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }}
-.wrap {{ max-width: 36rem; margin: 0 auto; padding-block: 0 5rem; }}
+.wrap {{ max-width: 44rem; margin: 0 auto; padding-block: 0 5rem; }}
 
 header {{ position: relative; padding-block: 5rem 3rem; }}
 header::before {{
@@ -200,11 +206,11 @@ footer {{
   font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em;
 }}
 @media (max-width: 480px) {{
-  body {{ font-size: 1.05rem; }}
   header {{ padding-block: 3.5rem 2rem; }}
 }}
 </style>
-
+</head>
+<body>
 <div class="wrap">
   <header>
     <p class="kicker">An essay by {author} &middot; {date}</p>
@@ -217,6 +223,8 @@ footer {{
   </article>
   <footer>{author} &middot; {date}</footer>
 </div>
+</body>
+</html>
 """
 
 
@@ -224,7 +232,7 @@ def main():
     title, dek, note, body = convert(SRC.read_text(encoding="utf-8"))
     OUT.write_text(
         TEMPLATE.format(
-            title=html.escape(title), dek=html.escape(dek), dek_html=inline(dek),
+            title=html.escape(title), dek=html.escape(dek.replace("*", "")), dek_html=inline(dek),
             note=note, body=body, author=AUTHOR, date=DATE,
         ),
         encoding="utf-8",
